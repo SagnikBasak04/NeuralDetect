@@ -1,2 +1,2 @@
-# neural_detect
+# NeuralDetect
 DeepFake Detection System
