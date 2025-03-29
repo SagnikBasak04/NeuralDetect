@@ -1,6 +1,5 @@
-// App.tsx
 import React from 'react';
-import AppRoutes from './routes/AppRoutes'; // Ensure the correct path
+import AppRoutes from './routes/AppRoutes'; 
 
 const App: React.FC = () => {
   return (

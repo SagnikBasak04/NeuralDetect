@@ -1,0 +1,20 @@
+.VideoInput {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .VideoInput_input {
+    display: none; 
+  }
+  
+  .VideoInput_video {
+    margin-top: 10px;
+  }
+  
+  .VideoInput_footer {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #666;
+  }
+  

@@ -1,5 +1,5 @@
 import React from 'react';
-import VideoInput from "../components/VideoInput"; // Ensure the correct path to VideoInput
+import VideoInput from "../components/VideoInput"; 
 import "./form.css";
 
 const Form: React.FC = () => {

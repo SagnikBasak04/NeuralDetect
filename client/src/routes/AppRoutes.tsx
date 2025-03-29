@@ -1,8 +1,7 @@
-// AppRoutes.tsx
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Landing from "../components/landing"; // Ensure the correct path
-import Form from '../components/form'; // Ensure the correct path
+import Landing from "../components/landing";
+import Form from '../components/form';
 
 const AppRoutes: React.FC = () => {
   return (

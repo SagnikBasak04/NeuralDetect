@@ -3,28 +3,25 @@
     background: linear-gradient(to right, black, #6b21a8);
     color: white;
     font-family: sans-serif;
-    min-height: 100vh; /* Ensure it takes at least the full viewport height */
+    min-height: 100vh; 
     display: flex;
     flex-direction: column;
   }
   
-  /* Main Content */
   .main-content {
     flex: 1;
     padding: 2rem;
     position: relative;
   }
   
-  /* Header Section */
   .header {
     display: flex;
-    flex-direction: column; /* Stack elements vertically */
+    flex-direction: column; 
     align-items: flex-start;
     gap: 1.5rem; 
     position: relative;
   }
   
-  /* Head Main */
   .head-main {
     display: flex;
     justify-content: space-between;
@@ -51,13 +48,11 @@
     background-color: #e5e5e5;
   }
   
-  /* Title Section */
   .title {
     font-size: 3rem;
     font-weight: 800;
   }
   
-  /* Subtitle */
   .subtitle {
     font-size: 1.5rem;
     font-weight: 400;
@@ -66,10 +61,10 @@
 
   .one-liner {
     display: flex;
-    flex-direction: column; /* Stack elements vertically */
-    align-items: flex-start; /* Align to the left */
+    flex-direction: column;
+    align-items: flex-start;
     text-align: left;
-    padding-left: 2rem; /* Adjust spacing from the left */
+    padding-left: 2rem; 
   }
   
   .title {
@@ -80,7 +75,7 @@
   .subtitle {
     font-size: 1.5rem;
     font-weight: 400;
-    margin-top: -2rem; /* Reduced spacing */
+    margin-top: -2rem; 
   }
   
  
@@ -88,24 +83,12 @@
   body, html {
     margin: 0;
     padding: 0;
-    overflow-x: hidden; /* Prevent horizontal scrolling */
+    overflow-x: hidden; 
   }
-  /* .cards-container {
-    position: relative;
-    top: 0;
-    right: 0;
-    transform: translateX(-15rem);
-     transform: translateY(-10px);  
-
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    margin-top: -9rem;
-  }
-   */
+ 
   
   .card {
-    position: relative; /* Change to relative */
+    position: relative; 
     background-color: black;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -168,9 +151,9 @@
 
 .login {
     display: flex;
-    justify-content: center; /* Center align the button horizontally */
-    align-items: center; /* Center align the button vertically, if needed */
-    height: 100%; /* Ensure it takes the full height of its container */
+    justify-content: center; 
+    align-items: center; 
+    height: 100%;
     margin-top: 3.5rem;
   }
   
@@ -178,16 +161,16 @@
     background-color: white;
     color: black;
     border: none;
-    border-radius: 25px; /* Rounded corners */
-    padding: 10px 20px; /* Adjust padding as needed */
-    font-size: 16px; /* Adjust font size as needed */
+    border-radius: 25px; 
+    padding: 10px 20px;
+    font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    transition: background-color 0.3s ease;
     font-size: 30px;
     font-weight: bolder;
   }
   
   .login-button:hover {
-    background-color: #e0e0e0; /* Lighter background on hover */
+    background-color: #e0e0e0;
   }
   

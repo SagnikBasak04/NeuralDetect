@@ -1,4 +1,3 @@
-// Landing.tsx
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import "@fortawesome/fontawesome-free/css/all.min.css";
@@ -13,7 +12,7 @@ const Landing: React.FC = () => {
 
   const handleClick = () => {
     console.log("Login is clicked");
-    navigate('/form'); // Navigate to the form page
+    navigate('/form');
   };
 
   return (
