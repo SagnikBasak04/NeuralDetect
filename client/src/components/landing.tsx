@@ -1,0 +1,42 @@
+import React from "react";
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import "./Landing.css"; 
+
+const Landing: React.FC = () => {
+  return (
+    <div className="landing-container">
+      {/* Main Content */}
+      <div className="main-content">
+        {/* Header */}
+        <header className="header">
+          <div className="head-main">
+            <h2>Neural Detect</h2>
+            <button className="connect-wallet">Connect Wallet</button>
+          </div>      
+          <div className="title">
+          <h1 className="title">
+            Your Crypto Command Center.
+            <span className="subtitle">Secure your digital future with Core.</span>
+          </h1>
+          </div>
+          
+        </header>
+
+        {/* Cards Section */}
+        <div className="cards-container">
+          {[
+            "https://storage.googleapis.com/a1aa/image/VzyP6F8wYtbRyZM1xDSKas4Q9w4rOzDJKRlzc01Cvbs.jpg",
+            "https://storage.googleapis.com/a1aa/image/owIZpzynsowKSdSx7PpnVwKVYR5MEnQbb63Q2o5neDo.jpg",
+            "https://storage.googleapis.com/a1aa/image/N-BFLKaYL9IVGr33bT1PhPAQQtxhS8MYaUTUz_KoFxM.jpg",
+          ].map((src, index) => (
+            <div key={index} className={`card card-${index}`}>
+              <img src={src} alt={`Crypto Dashboard ${index + 1}`} className="card-img" />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Landing;
