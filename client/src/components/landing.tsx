@@ -10,18 +10,15 @@ const Landing: React.FC = () => {
         {/* Header */}
         <header className="header">
           <div className="head-main">
-            <h2>Neural Detect</h2>
+            <h2> CustosAI</h2>
             <button className="connect-wallet">Connect Wallet</button>
           </div>      
-          <div className="title">
-          <h1 className="title">
-            Your Crypto Command Center.
-            <span className="subtitle">Secure your digital future with Core.</span>
-          </h1>
-          </div>
-          
-        </header>
+            <div className="one-liner">
+                <h1 className="title">Ensuring Video Authenticity <br/>For a Trusted World.</h1>
+                <h1 className="subtitle"> Secure your digital future with Core.</h1>
+            </div>
 
+        </header>
         {/* Cards Section */}
         <div className="cards-container">
           {[
@@ -33,6 +30,9 @@ const Landing: React.FC = () => {
               <img src={src} alt={`Crypto Dashboard ${index + 1}`} className="card-img" />
             </div>
           ))}
+        </div>
+        <div>
+            <h1>hjksagfkg</h1>
         </div>
       </div>
     </div>
