@@ -1,20 +1,78 @@
+/* form.css */
 .VideoInput {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .VideoInput_input {
-    display: none; 
-  }
-  
-  .VideoInput_video {
-    margin-top: 10px;
-  }
-  
-  .VideoInput_footer {
-    margin-top: 10px;
-    font-size: 14px;
-    color: #666;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.VideoInput_input {
+  display: none;
+}
+
+.VideoInput_video {
+  margin-top: 10px;
+}
+
+.VideoInput_footer {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #666;
+}
+
+.VideoInput_error {
+  color: red;
+  margin-top: 10px;
+}
+
+.VideoInput_submit {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.VideoInput_submit.disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.form-container {
+  background: linear-gradient(to right, black, #6b21a8);
+  color: white;
+  font-family: sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.App {
+  text-align: center;
+}
+
+.wrapper {
+  height: 100px; /* Adjust height as needed */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  margin-top: 20px;
+  width: 100%;
+  max-width: 600px;
+  border-radius: 10px; /* Rounded corners */
+}
+
+.box {
+  flex: 1;
+  border-radius: 0.5em;
+  font-size: 140%;
+  padding: 20px;
+  text-align: center;
+  background-color: rgba(233, 215, 215, 0.5); 
+  color: #fff;
+}

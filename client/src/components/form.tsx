@@ -1,12 +1,26 @@
-import React from 'react';
-import VideoInput from "../components/VideoInput"; 
+import React, { useState } from 'react';
+import VideoInput from "../components/VideoInput";
 import "./form.css";
 
 const Form: React.FC = () => {
+  const [logMessage, setLogMessage] = useState<string | null>(null);
+
+  const handleSubmit = () => {
+    setLogMessage("Submit is clicked");
+    console.log("Submit is clicked");
+  };
+
   return (
-    <div className="App">
-      <h1>Video Upload</h1>
-      <VideoInput width={400} height={300} />
+    <div className="form-container">
+      <div className="App">
+        <h1>Video Upload</h1>
+        <VideoInput width={400} height={300} onSubmit={handleSubmit} logMessage={logMessage} />
+        {logMessage && (
+          <div className="wrapper">
+            <div className="box box1">{logMessage}</div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
