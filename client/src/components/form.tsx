@@ -1,22 +1,12 @@
-// Form.tsx
 import React from 'react';
+import VideoInput from "../components/VideoInput"; // Ensure the correct path to VideoInput
+import "./form.css";
 
 const Form: React.FC = () => {
   return (
-    <div>
-      <h2>Login Form</h2>
-      {/* Add your form elements here */}
-      <form>
-        <label>
-          Username:
-          <input type="text" name="username" />
-        </label>
-        <label>
-          Password:
-          <input type="password" name="password" />
-        </label>
-        <button type="submit">Submit</button>
-      </form>
+    <div className="App">
+      <h1>Video Upload</h1>
+      <VideoInput width={400} height={300} />
     </div>
   );
 };

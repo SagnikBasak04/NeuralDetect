@@ -1,25 +1,26 @@
-import React from "react";
+// Landing.tsx
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./Landing.css";
 import deepfakeCard2 from "../assets/deepfake_card2.jpg";
 import deepfakeCard3 from "../assets/deepfake_card3.jpg";
 import deepfakeCard4 from "../assets/deepfake_card4.jpg";
 import tick from "../assets/tick.png";
-import logo from "../assets/logo.jpeg";
 
 const Landing: React.FC = () => {
+  const navigate = useNavigate();
+
   const handleClick = () => {
     console.log("Login is clicked");
+    navigate('/form'); // Navigate to the form page
   };
 
   return (
     <div className="landing-container">
-      {/* Main Content */}
       <div className="main-content">
-        {/* Header */}
         <header className="header">
           <div className="head-main">
-            {/* <img src={logo} alt="Logo" className="logo-icon" /> */}
             <h2>CustosAI</h2>
             <button className="connect-wallet">Connect Wallet</button>
           </div>
@@ -38,8 +39,6 @@ const Landing: React.FC = () => {
             ))}
           </div>
         </header>
-
-        {/* Middle Portion */}
         <div className="middle-portion">
           <div className="left-side">
             <div className="points-above">
@@ -69,7 +68,6 @@ const Landing: React.FC = () => {
             </button>
           </div>
         </div>
-        
       </div>
     </div>
   );
