@@ -1,5 +1,6 @@
 // import { useState } from 'react'
 import Landing from './components/landing';
+// import Form from './components/form';
 // import { useEffect, useState } from "react";
 // import { BrowserRouter as Router } from "react-router-dom";
 // import { motion } from "framer-motion";
@@ -18,6 +19,7 @@ function App() {
   return (
     <div>
       <Landing/>
+      {/* <Form/> */}
     </div>
   );
 }
