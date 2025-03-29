@@ -17,10 +17,8 @@ const Landing: React.FC = () => {
                 <h1 className="title">Ensuring Video Authenticity <br/>For a Trusted World.</h1>
                 <h1 className="subtitle"> Secure your digital future with Core.</h1>
             </div>
-
-        </header>
-        {/* Cards Section */}
-        <div className="cards-container">
+            <div className="cards-container">
+        
           {[
             "https://storage.googleapis.com/a1aa/image/VzyP6F8wYtbRyZM1xDSKas4Q9w4rOzDJKRlzc01Cvbs.jpg",
             "https://storage.googleapis.com/a1aa/image/owIZpzynsowKSdSx7PpnVwKVYR5MEnQbb63Q2o5neDo.jpg",
@@ -30,6 +28,17 @@ const Landing: React.FC = () => {
               <img src={src} alt={`Crypto Dashboard ${index + 1}`} className="card-img" />
             </div>
           ))}
+        </div>
+
+        </header>
+        {/* Cards Section */}
+
+        <div className="middle-portion">
+            <div className="left-side">
+            <h1 className="subtitle"> Secure your digital future with Core.</h1>
+
+            </div>
+        
         </div>
         <div>
             <h1>hjksagfkg</h1>
