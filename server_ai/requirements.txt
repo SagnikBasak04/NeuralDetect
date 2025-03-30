@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+requests
+numpy
+opencv-python
+pydantic
+cloudinary
+keras
+torch 
+starlette
+tensorflow
