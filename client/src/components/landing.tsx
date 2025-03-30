@@ -14,15 +14,23 @@ const Landing: React.FC = () => {
     console.log("Login is clicked");
     navigate('/form');
   };
+  const handleFeedClick = () => {
+    console.log("Feed");
+    navigate('/feed');
+  };
 
   return (
     <div className="landing-container">
       <div className="main-content">
         <header className="header">
           <div className="head-main">
-            <h2>CustosAI</h2>
-            <button className="connect-wallet">Connect Wallet</button>
-          </div>
+            <h2 className='head-main-title'>CustosAI</h2>
+            <button 
+    className="connect-wallet" 
+    onClick={handleFeedClick}
+  >
+    Social Page
+  </button>          </div>
           <div className="one-liner">
             <h1 className="title">
               Ensuring Video Authenticity <br />

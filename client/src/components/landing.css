@@ -28,6 +28,9 @@
     align-items: center;
     width: 100%;
   }
+  .head-main-title{
+    margin-left: 2rem;
+  }
 
   .head-main h2 {
     font-size: 2rem;
@@ -173,4 +176,7 @@
   .login-button:hover {
     background-color: #e0e0e0;
   }
-  
+  .connect-wallet {
+    position: relative; /* Ensure it stays above other elements */
+    z-index: 1000; /* Higher than other elements */
+}
