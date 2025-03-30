@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './Feed.css';
 import VideoModal from './VideoModal';
+import { useNavigate } from 'react-router-dom';
+
 
 interface VideoPost {
   _id: string;
@@ -21,8 +23,10 @@ interface FeedResponse {
   uploads: VideoPost[];
 }
 
+
 const Feed: React.FC = () => {
   const [selectedVideo, setSelectedVideo] = useState<VideoPost | null>(null);
+
   const [videos, setVideos] = useState<VideoPost[]>([]);
   const [error, setError] = useState<string | null>(null);
 
@@ -76,12 +80,14 @@ const Feed: React.FC = () => {
     <div className="feed-container">
       <div className="feed-header">
         <h1>Video Feed</h1>
+
       </div>
       {error && <div className="feed-error">{error}</div>}
       <div className="feed-grid">
         {videos.map((video) => (
           <div 
             key={video._id} 
+
             className="video-card"
             onClick={() => handleVideoClick(video)}
           >
