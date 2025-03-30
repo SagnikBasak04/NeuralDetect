@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Landing from "../components/landing";
 import Form from '../components/form';
+import Feed from '../components/Feed';
 
 const AppRoutes: React.FC = () => {
   return (
@@ -9,6 +10,7 @@ const AppRoutes: React.FC = () => {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/form" element={<Form />} />
+        <Route path="/feed" element={<Feed />} />
       </Routes>
     </Router>
   );
