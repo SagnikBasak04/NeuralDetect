@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './Feed.css';
 import VideoModal from './VideoModal';
 import { useNavigate } from 'react-router-dom';
+import { useAuthContext } from '../context/AuthContext';
 
 
 interface VideoPost {
@@ -25,6 +26,7 @@ interface FeedResponse {
 
 
 const Feed: React.FC = () => {
+  const {authUser} = useAuthContext();
   const [selectedVideo, setSelectedVideo] = useState<VideoPost | null>(null);
   const navigate = useNavigate();
   const handleClick = () => {
@@ -38,7 +40,7 @@ const Feed: React.FC = () => {
   useEffect(() => {
     const fetchFeed = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/v1/upload/feed/67e831f56a6978339e7b00e4');
+        const response = await fetch(`http://localhost:5000/api/v1/upload/feed/${authUser?._id}`);
         if (!response.ok) {
           throw new Error("Failed to fetch feed data");
         }
@@ -80,21 +82,23 @@ const Feed: React.FC = () => {
     }
   };
 
+  console.log(authUser);
+  
   return (
     <div className="feed-container">
       <div className="feed-header">
         <h1>Video Feed</h1>
-        <button type='submit' className='upload-button' onClick={handleClick}> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
-  <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/>
-  <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708z"/>
-</svg> </button>
-           
- </div>
+        <button type='submit' className='upload-button' onClick={handleClick}> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-upload" viewBox="0 0 16 16">
+          <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
+          <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708z" />
+        </svg> </button>
+
+      </div>
       {error && <div className="feed-error">{error}</div>}
       <div className="feed-grid">
         {videos.map((video) => (
-          <div 
-            key={video._id} 
+          <div
+            key={video._id}
 
             className="video-card"
             onClick={() => handleVideoClick(video)}

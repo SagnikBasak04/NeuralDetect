@@ -1,29 +1,25 @@
 import React, { useState } from 'react';
 import "./Login.css";
 import { useNavigate } from 'react-router-dom';
-
+import useLogin from '../hooks/useLogin'; // Adjust the path as necessary
 
 const Login: React.FC = () => {
-      const navigate = useNavigate();
-      const handleClick = () => {
-        console.log("Feed is clicked");
-        navigate('/feed');
-      };
-    
-  const [username, setUsername] = useState('');
+  const navigate = useNavigate();
+  const { login, loading } = useLogin();
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    if (username && password) {
-      // Here you would typically call your authentication API
-      console.log('Username:', username);
-      console.log('Password:', password);
-      setError(null);
-    } else {
-      setError('Please enter both username and password.');
+    if (!email || !password) {
+      setError('Please enter both email and password.');
+      return;
     }
+    setError(null);
+    await login({ email, password });
+    // Navigate to the feed after successful login
+    navigate('/feed');
   };
 
   return (
@@ -31,12 +27,12 @@ const Login: React.FC = () => {
       <form onSubmit={handleSubmit} className="login-form">
         <h2>LOGIN</h2>
         <div className="form-group">
-          <label htmlFor="username">USERNAME</label>
+          <label htmlFor="email">EMAIL</label>
           <input
             type="text"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
         </div>
@@ -51,8 +47,12 @@ const Login: React.FC = () => {
           />
         </div>
         {error && <div className="error-message">{error}</div>}
-        <button type="submit" className="login-button-login-page" onClick={handleClick}>
-          LOGIN
+        <button 
+          type="submit" 
+          className="login-button-login-page"
+          disabled={loading}
+        >
+          {loading ? "Logging in..." : "LOGIN"}
         </button>
       </form>
     </div>

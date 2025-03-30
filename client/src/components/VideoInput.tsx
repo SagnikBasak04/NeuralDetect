@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { uploadBlobToCloudinary } from '../utils/uploadToCloudinary';
+import { useAuthContext } from '../context/AuthContext';
 
 interface UploadResult {
   userId: string;
@@ -22,6 +23,7 @@ interface VideoInputProps {
 }
 
 const VideoInput: React.FC<VideoInputProps> = ({ width, height, onSubmit, logMessage }) => {
+  const {authUser} = useAuthContext();
   const inputRef = React.useRef<HTMLInputElement>(null);
   const [source, setSource] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -54,7 +56,7 @@ const VideoInput: React.FC<VideoInputProps> = ({ width, height, onSubmit, logMes
         }
 
         // Call the backend API with the Cloudinary URL.
-        const backendUrl = "http://localhost:5000/api/v1/upload/upload-video/67e81dd42429e016759dd780";
+        const backendUrl = `http://localhost:5000/api/v1/upload/upload-video/${authUser?._id}`;
         const response = await fetch(backendUrl, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
