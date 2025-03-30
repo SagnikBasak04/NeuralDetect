@@ -7,6 +7,7 @@ export const uploadVideo = async (req: Request, res: Response) => {
     try {
         const id = req.params.id;
         const { videoUrl }: UploadProps = req.body;
+        const ML_URL = process.env.ML_URL;
 
         if (!id) {
             res.status(400).json({ error: "User id is required" });
@@ -19,10 +20,23 @@ export const uploadVideo = async (req: Request, res: Response) => {
             return;
         }
 
+        const prediction = await fetch(`${ML_URL}/predict`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                url: videoUrl
+            })
+        })
+
+        const data = await prediction.json();
+        console.log(data)
+
         const newVideo = new Upload({
             userId: id,
             videoUrl,
-            modelResult: "fake",
+            modelResult: data.model_prediction,
         });
 
         if (newVideo) {
