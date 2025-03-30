@@ -15,11 +15,13 @@
   }
   
   .header {
-    display: flex;
+    /* display: flex; */
     flex-direction: column; 
-    align-items: flex-start;
-    gap: 1.5rem; 
-    position: relative;
+    /* align-items: flex-start; */
+    /* gap: 1.5rem;  */
+    /* position: relative; */
+    margin-bottom: 0px;
+    padding-bottom: 0px;
   }
   
   .head-main {
@@ -35,20 +37,6 @@
   .head-main h2 {
     font-size: 2rem;
     font-weight: bold;
-  }
-  
-  .connect-wallet {
-    background-color: white;
-    color: black;
-    padding: 0.5rem 1.5rem;
-    border-radius: 9999px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-  
-  .connect-wallet:hover {
-    background-color: #e5e5e5;
   }
   
   .title {
@@ -115,15 +103,6 @@
     object-fit: cover;
   }
 
-
-  .one-liner {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
-    padding-left: 2rem;
-  }
-  
   .cards-container {
     display: flex;
     flex-direction: column;

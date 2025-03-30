@@ -1,0 +1,87 @@
+/* Login.css */
+.login-container {
+    background: linear-gradient(to right, black, #6b21a8);
+    color: white;
+    font-family: 'Roboto', sans-serif; /* Use a modern font */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+  }
+  
+  .login-form {
+    background: rgba(0, 0, 0, 0.8); /* Slightly darker background */
+    padding: 2rem;
+    border-radius: 15px; /* More rounded corners */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+    width: 350px;
+    text-align: center;
+    transition: transform 0.3s ease; /* Smooth scaling effect */
+  }
+  
+  .login-form:hover {
+    transform: scale(1.02); /* Slightly scale up on hover */
+  }
+  
+  .login-form h2 {
+    margin-bottom: 25px;
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+  
+  .form-group {
+    margin-bottom: 40px;
+    text-align: left;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  
+  .form-group input {
+    width:92%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent background */
+    color: white;
+    transition: border-color 0.3s ease;
+  }
+  
+  .form-group input:focus {
+    border-color: #007bff; /* Change border color on focus */
+    outline: none;
+  }
+  
+  .login-button-login-page {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .login-button-login-page:hover {
+    background-color: #0056b3;
+    transform: scale(1.05); /* Scale up on hover */
+  }
+  
+  .error-message {
+    color: red;
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  

@@ -12,11 +12,7 @@ const Landing: React.FC = () => {
 
   const handleClick = () => {
     console.log("Login is clicked");
-    navigate('/form');
-  };
-  const handleFeedClick = () => {
-    console.log("Feed");
-    navigate('/feed');
+    navigate('/Login');
   };
 
   return (
@@ -25,12 +21,7 @@ const Landing: React.FC = () => {
         <header className="header">
           <div className="head-main">
             <h2 className='head-main-title'>CustosAI</h2>
-            <button 
-    className="connect-wallet" 
-    onClick={handleFeedClick}
-  >
-    Social Page
-  </button>          </div>
+                    </div>
           <div className="one-liner">
             <h1 className="title">
               Ensuring Video Authenticity <br />
