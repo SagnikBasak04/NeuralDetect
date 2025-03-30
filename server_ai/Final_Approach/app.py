@@ -4,13 +4,15 @@ from pydantic import BaseModel
 import cloudinary
 import cloudinary.uploader
 import os
-import cv2
+import cv2 as cv
 import tempfile
 import requests
 from enum import Enum
 from typing import Any
 from starlette.middleware.cors import CORSMiddleware
 from keras.models import load_model
+import numpy as np
+from fastapi.responses import JSONResponse
 
 model = load_model('final_model.h5')
 
@@ -71,29 +73,26 @@ def home() -> Any:
     return {"message": "Server is up and running"}
 
 @app.post("/predict")
-async def process_video_url(video_url: str):
+async def process_video_url(video: VideoURL):
+    video_url = video.url
     video_filename = "temp_video.mp4"
     video_path = os.path.join("temp_videos", video_filename)
     os.makedirs("temp_videos", exist_ok=True)
 
     download_video(video_url, video_path)
     
-    frames = extract_frames(video_path)
+    frames = extract_frames(video_path,num_frames=8)
     if frames is None:
         raise HTTPException(status_code=500, detail="Error processing the video.")
-    
-    input_tensor = np.expand_dims(frames, axis=0)
-    input_tensor = torch.tensor(input_tensor).permute(0, 4, 1, 2, 3).float()
 
-    with torch.no_grad():  # Corrected block
-        output = model(input_tensor)
-        prediction = torch.argmax(output, dim=1).item()
+    processed_video = np.expand_dims(frames, axis=0)
+    predictions = model.predict(processed_video)
 
-    prediction_label = "Fake" if prediction == 0 else "Real"
+    prediction_label = "Real" if predictions[0] > 0.5 else "Fake"
 
     os.remove(video_path)
     
     return JSONResponse(content={"model_prediction": prediction_label})
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="127.0.0.1", port=8000)
