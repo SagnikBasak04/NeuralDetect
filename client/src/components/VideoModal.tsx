@@ -3,11 +3,8 @@ import './VideoModal.css';
 
 interface VideoModalProps {
   video: {
-    id: string;
+    _id: string;
     videoUrl: string;
-    title: string;
-    description: string;
-    timestamp: string;
   };
   onClose: () => void;
   isAuthentic: boolean;
@@ -46,13 +43,9 @@ const VideoModal: React.FC<VideoModalProps> = ({
           />
         </div>
         <div className="modal-info">
-          <h2>{video.title}</h2>
           <div className="prediction-section">
             <p className="prediction-text">
-              Our model has predicted this video to be{' '}
-              <span className={isAuthentic ? 'real' : 'fake'}>
-                {isAuthentic ? 'real' : 'fake'}
-              </span>
+              {isAuthentic ? "This video is Real & Genuine" : "This video might potentially be a Deepfake Video"}
             </p>
             <div className="vote-counts">
               <div className="vote-count real">
@@ -69,13 +62,13 @@ const VideoModal: React.FC<VideoModalProps> = ({
           <div className="vote-buttons">
             <button 
               className="vote-button real"
-              onClick={() => onVote(true)}
+              onClick={() => onVote(true)}  // User clicked "Real" → sends feedback "no"
             >
               Real
             </button>
             <button 
               className="vote-button fake"
-              onClick={() => onVote(false)}
+              onClick={() => onVote(false)} // User clicked "Fake" → sends feedback "yes"
             >
               Fake
             </button>
@@ -86,4 +79,4 @@ const VideoModal: React.FC<VideoModalProps> = ({
   );
 };
 
-export default VideoModal; 
+export default VideoModal;

@@ -1,64 +1,48 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Feed.css';
 import VideoModal from './VideoModal';
 
 interface VideoPost {
-  id: string;
+  _id: string;
+  userId: string;
   videoUrl: string;
-  title: string;
-  description: string;
-  timestamp: string;
-  isAuthentic: boolean;
-  realCount: number;
-  fakeCount: number;
+  modelResult: string;
+  positiveReviews: number;
+  negativeReviews: number;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+}
+
+interface FeedResponse {
+  totalPages: number;
+  currentPage: number;
+  totalUploads: number;
+  uploads: VideoPost[];
 }
 
 const Feed: React.FC = () => {
   const [selectedVideo, setSelectedVideo] = useState<VideoPost | null>(null);
+  const [videos, setVideos] = useState<VideoPost[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
-  // Mock data - replace with backend data later
-  const videos: VideoPost[] = [
-    {
-      id: '1',
-      videoUrl: 'https://example.com/video1.mp4',
-      title: 'First Video',
-      description: 'This is a sample video description',
-      timestamp: '2024-03-29',
-      isAuthentic: true,
-      realCount: 150,
-      fakeCount: 30
-    },
-    {
-      id: '2',
-      videoUrl: 'https://example.com/video2.mp4',
-      title: 'Second Video',
-      description: 'Another sample video description',
-      timestamp: '2024-03-29',
-      isAuthentic: false,
-      realCount: 45,
-      fakeCount: 200
-    },
-    {
-      id: '3',
-      videoUrl: 'https://example.com/video3.mp4',
-      title: 'Third Video',
-      description: 'Yet another sample video description',
-      timestamp: '2024-03-29',
-      isAuthentic: true,
-      realCount: 300,
-      fakeCount: 50
-    },
-    {
-      id: '4',
-      videoUrl: 'https://example.com/video4.mp4',
-      title: 'Fourth Video',
-      description: 'One more sample video description',
-      timestamp: '2024-03-29',
-      isAuthentic: false,
-      realCount: 60,
-      fakeCount: 180
-    }
-  ];
+  // Fetch the feed from the backend endpoint
+  useEffect(() => {
+    const fetchFeed = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/v1/upload/feed/67e831f56a6978339e7b00e4');
+        if (!response.ok) {
+          throw new Error("Failed to fetch feed data");
+        }
+        const data: FeedResponse = await response.json();
+        setVideos(data.uploads);
+      } catch (err: any) {
+        console.error(err);
+        setError(err.message || "Error fetching feed data");
+      }
+    };
+    fetchFeed();
+  }, []);
 
   const handleVideoClick = (video: VideoPost) => {
     setSelectedVideo(video);
@@ -68,10 +52,24 @@ const Feed: React.FC = () => {
     setSelectedVideo(null);
   };
 
-  const handleVote = (isReal: boolean) => {
-    // This will be replaced with actual API call later
-    console.log(`Voted ${isReal ? 'real' : 'fake'} for video ${selectedVideo?.id}`);
-    handleCloseModal();
+  // If user clicks "Real", then send feedback "no". If "Fake", send feedback "yes".
+  const handleVote = async (isReal: boolean) => {
+    if (!selectedVideo) return;
+    const feedback = isReal ? "no" : "yes";
+    try {
+      const response = await fetch("http://localhost:5000/api/v1/upload/feedback", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: selectedVideo._id, feedback }),
+      });
+      if (!response.ok) {
+        throw new Error("Feedback submission failed");
+      }
+      const data = await response.json();
+      console.log("Feedback response:", data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -79,10 +77,11 @@ const Feed: React.FC = () => {
       <div className="feed-header">
         <h1>Video Feed</h1>
       </div>
+      {error && <div className="feed-error">{error}</div>}
       <div className="feed-grid">
         {videos.map((video) => (
           <div 
-            key={video.id} 
+            key={video._id} 
             className="video-card"
             onClick={() => handleVideoClick(video)}
           >
@@ -95,9 +94,13 @@ const Feed: React.FC = () => {
               />
             </div>
             <div className="video-info">
-              <h3>{video.title}</h3>
-              <p>{video.description}</p>
-              <span className="timestamp">{video.timestamp}</span>
+              <div className="model-result">
+                {video.modelResult.toLowerCase() === "fake" ? (
+                  <span className="warning">Fake</span>
+                ) : (
+                  <span className="success">Real</span>
+                )}
+              </div>
             </div>
           </div>
         ))}
@@ -107,9 +110,10 @@ const Feed: React.FC = () => {
         <VideoModal
           video={selectedVideo}
           onClose={handleCloseModal}
-          isAuthentic={selectedVideo.isAuthentic}
-          realCount={selectedVideo.realCount}
-          fakeCount={selectedVideo.fakeCount}
+          // If modelResult is "fake", then the video is not authentic.
+          isAuthentic={selectedVideo.modelResult.toLowerCase() !== "fake"}
+          realCount={selectedVideo.positiveReviews}
+          fakeCount={selectedVideo.negativeReviews}
           onVote={handleVote}
         />
       )}
@@ -117,4 +121,4 @@ const Feed: React.FC = () => {
   );
 };
 
-export default Feed; 
+export default Feed;

@@ -88,7 +88,7 @@ async def process_video_url(video: VideoURL):
     processed_video = np.expand_dims(frames, axis=0)
     predictions = model.predict(processed_video)
 
-    prediction_label = "Real" if predictions[0] > 0.5 else "Fake"
+    prediction_label = "real" if predictions[0] > 0.5 else "fake"
 
     os.remove(video_path)
     
